@@ -4,6 +4,15 @@ import foo from './modules/foo.js';
 
 const log = debug('app:log');
 
-debug.enable('*');
+if (ENV !== 'production'){
+  debug.enable('*');
+  log('Hello world');
+}
+else {
+  debug.disable();
+}
 
-export default () => log(foo);
+
+const printTarget = document.getElementsByClassName('debug__output')[0];
+
+printTarget.innerText = `This is the Answer: ${foo}\n\n`;
